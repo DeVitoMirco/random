@@ -18,28 +18,14 @@ body {
     }
     .page.r {
        display: none;
-    }
-
- 
-.usage {
-    position: absolute;
-    top: calc(50vh - 50px);
-    line-height: 50px;
-    z-index: 1000;
-    color: white;
-    font-size: 20px;
-    width: 100%;
-    text-align: center;
-    font-family: "Arial Black", Gadget, sans-serif;
-    pointer-events: none;
-}
+    } 
 
 .text {
     margin: auto;
     font-family: 'Quicksand', sans-serif;
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
     color: white;
-    font-size: 30px;
+    font-size: 24px;
     -webkit-touch-callout: none;  
     -webkit-user-select: none;  
     -khtml-user-select: none;  
@@ -47,4 +33,11 @@ body {
     -ms-user-select: none; 
     user-select: none;  
                                  
+}
+
+@media screen and (max-width: 768px) {
+    .text {
+        font-size: 16px;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
 }
