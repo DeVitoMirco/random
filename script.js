@@ -1,83 +1,56 @@
 $(document).ready(function () {
+    var sx = screen.availWidth;
+    var sy = screen.availHeight;
     $(function () {
-
+      
         $(window).bind('load', function () {
-        $('.r').each(function (i) {
-            $(this).css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-        });
-        $('.r').each(function (i) {
-            $(this).css("display", 'flex'); 
-        });
-        fetcht(".a .text");
-        fetcht(".b .text");
-        fetcht(".c .text");
-        fetcht(".d .text");
-        fetcht(".e .text");
-        fetcht(".f .text");
-        fetcht(".g .text");
-
+            $('.r').each(function (i) {
+                $(this).css("background-image", 'url("https://picsum.photos/' + sx + '/' + sy + '?random=' + Math.random() + '")');
+                
+            });
+            $('.r').each(function (i) {
+                $(this).css("display", 'flex');
+            });
+            fetcht(".a .text");
+            fetcht(".b .text");
+            fetcht(".c .text");
+            fetcht(".d .text");
+            fetcht(".e .text");
+            fetcht(".f .text");
+            fetcht(".g .text");
+             
         });
     });
     $('.page').each(function (i, e) {
         var $this = $(this);
         $(this).click(function (event) {
-          
+
             var x = event.pageX;
             var y = event.pageY;
             var nextItem = i + 1;
+            var prevItem = nextItem - 2;
             if (nextItem >= $('.page').length) {
                 nextItem = 0;
             }
+            if (nextItem == 1 || nextItem == 2)  {
+                prevItem = nextItem + $('.page').length - 2;
+            } 
+
             $('.page:eq(' + nextItem + ')').css('z-index', parseInt($(this).css('z-index')) + 1);
             $('.page:eq(' + nextItem + ')').css('clip-path', 'circle(0% at ' + x + 'px ' + y + 'px)');
-
-            if ($this.hasClass("a")) {
-                $(".h").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                
-                fetcht(".h .text");
-
-            }
-            if ($this.hasClass("b")) {
-                $(".a").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                fetcht(".a .text");
-            }
-
-            if ($this.hasClass("c")) {
-                $(".b").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                fetcht(".b .text");
-            }
-            if ($this.hasClass("d")) {
-                $(".c").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                fetcht(".c .text");
-            }
-            if ($this.hasClass("e")) {
-                $(".d").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                fetcht(".d .text");
-            }
-            if ($this.hasClass("f")) {
-                $(".e").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                fetcht(".e .text");
-            }
-
-            if ($this.hasClass("g")) {
-                $(".f").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                fetcht(".f .text");
-            }
-
-            if ($this.hasClass("h")) {
-                $(".g").css("background-image", 'url("https://picsum.photos/1920/1080?random=' + Math.random() + '")');
-                fetcht(".g .text");
-            }
+             $('.page:eq(' + nextItem + ')').css("-webkit-clip-path", 'circle(0% at ' + x + 'px ' + y + 'px)');
+            $('.page:eq(' + prevItem + ')').css("background-image", 'url("https://picsum.photos/' + sx + '/' + sy + '?random=' + Math.random() + '")');
+            var tar = '.page:eq(' + prevItem + ')'
+            fetcht(tar + " .text"); 
+           
             anime({
                 targets: $('.page')[nextItem],
                 update: function (anim) {
-                    $('.page:eq(' + nextItem + ')').css('clip-path', 'circle(' + (anim.progress * 2) + '% at ' + x + 'px ' + y + 'px)');
+                    $('.page:eq(' + nextItem + ')').css('clip-path', 'circle(' + (anim.progress*2) + '% at ' + x + 'px ' + y + 'px)');
+                    $('.page:eq(' + nextItem + ')').css('-webkit-clip-path', 'circle(' + (anim.progress*2) + '% at ' + x + 'px ' + y + 'px)');
                 }
-            });
-
-
-        });
-
+            }); 
+        }); 
     });
 
     function fetcht(div) {
@@ -92,5 +65,5 @@ $(document).ready(function () {
 
 
     }
-  
+
 });
